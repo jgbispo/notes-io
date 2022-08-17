@@ -1,4 +1,4 @@
-import { LinkBox, Box, LinkOverlay, IconButton, Flex, Text, Container, Link } from '@chakra-ui/react'
+import { Box, IconButton, Flex, Text, Heading } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 
 interface Card {
@@ -9,30 +9,27 @@ interface Card {
 
 export default function Card(props: Card) {
   return (
-    <Container>
-      <Flex flexDir='row'>
-        <Box flex={1} bg="green.200" borderLeftRadius={15} />
-        <LinkBox flex={9} p={2} >
-          <Flex>
-            <LinkOverlay href='https://google.com' flex={1}>
-              <Text fontSize='18px' fontFamily='roboto' fontWeight='bold'>{props.title}</Text>
-              <Text fontSize='12px' fontWeight='light'>{props.content}</Text>
-            </LinkOverlay>
-            <IconButton
-              bg="red.300"
-              height='80px'
-              aria-label='Add to friends'
-              icon={<DeleteIcon />}
-              borderRightRadius={15}
-              borderColor="blackAlpha.50"
-              _hover={{
-                transform: 'translateY(-2px)',
-                boxShadow: 'lg',
-              }}
-            />
-          </Flex>
-        </LinkBox>
-      </Flex >
-    </Container >
+    <Box p={5} cursor='pointer' shadow='md' m={2} borderWidth='1px' borderRadius={25}>
+      <Flex justifyContent='space-between' placeItems='center'>
+        <Box onClick={() => { console.log(props.title) }}>
+          <Heading fontSize='xl'>{props.title}</Heading>
+          <Text mt={4}>{props.content}</Text>
+        </Box>
+        <Box>
+          <IconButton
+            aria-label='Delete'
+            variant='outline'
+            colorScheme='red'
+            icon={<DeleteIcon />}
+            _hover={{
+              transform: 'translateY(-2px)',
+              boxShadow: 'lg',
+            }}
+            onClick={() => { console.log("Delete") }}
+            shadow='md'
+          />
+        </Box>
+      </Flex>
+    </Box >
   )
 }
