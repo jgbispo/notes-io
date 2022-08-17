@@ -1,4 +1,4 @@
-import { Box, IconButton, Flex, Text, Container } from '@chakra-ui/react'
+import { LinkBox, Box, LinkOverlay, IconButton, Flex, Text, Container, Link } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 
 interface Card {
@@ -12,12 +12,12 @@ export default function Card(props: Card) {
     <Container>
       <Flex flexDir='row'>
         <Box flex={1} bg="green.200" borderLeftRadius={15} />
-        <Box flex={9} p={2}>
+        <LinkBox flex={9} p={2} >
           <Flex>
-            <Box flex={1}>
+            <LinkOverlay href='https://google.com' flex={1}>
               <Text fontSize='18px' fontFamily='roboto' fontWeight='bold'>{props.title}</Text>
               <Text fontSize='12px' fontWeight='light'>{props.content}</Text>
-            </Box>
+            </LinkOverlay>
             <IconButton
               bg="red.300"
               height='80px'
@@ -31,7 +31,7 @@ export default function Card(props: Card) {
               }}
             />
           </Flex>
-        </Box>
+        </LinkBox>
       </Flex >
     </Container >
   )

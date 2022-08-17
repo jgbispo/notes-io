@@ -1,4 +1,16 @@
-import { Box, Input, InputGroup, InputRightElement, Container, Text, Flex, Image, ButtonGroup, Button, IconButton } from '@chakra-ui/react'
+import {
+  Box,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Container,
+  Text,
+  Flex,
+  Image,
+  IconButton,
+  VStack,
+  StackDivider
+} from '@chakra-ui/react'
 import { SearchIcon, EditIcon } from '@chakra-ui/icons'
 import Card from './Card'
 
@@ -12,7 +24,15 @@ var notes = [
   { id: 1, title: 'title 01', content: 'Nothing' },
   { id: 2, title: 'title 02', content: 'Nothing' },
   { id: 3, title: 'title 03', content: 'Nothing' },
-  { id: 4, title: 'title 04', content: 'Nothing' }
+  { id: 4, title: 'title 03', content: 'Nothing' },
+  { id: 5, title: 'title 03', content: 'Nothing' },
+  { id: 6, title: 'title 03', content: 'Nothing' },
+  { id: 7, title: 'title 03', content: 'Nothing' },
+  { id: 8, title: 'title 03', content: 'Nothing' },
+  { id: 9, title: 'title 03', content: 'Nothing' },
+  { id: 10, title: 'title 03', content: 'Nothing' },
+  { id: 11, title: 'title 03', content: 'Nothing' },
+  { id: 12, title: 'title 04', content: 'Nothing' }
 ]
 
 
@@ -59,11 +79,22 @@ export default function NavBar(props: User) {
             }}
           />
         </Flex>
-        <Box mt={10}>
-          {notes.map(note => {
-            return <Box m={2}><Card key={note.id} title={note.title} content={note.content} id={note.id} /></Box>
-          })}
-        </Box>
+
+        <VStack
+          divider={<StackDivider borderColor={'gray.200'} />}
+          spacing={4}
+          align='stretch'
+          mt={5}
+          overflowY='auto'
+          overscrollBehaviorY='contain'
+          maxHeight={650}
+        >
+          {
+            notes.map(note => {
+              return <Card key={note.id} title={note.title} content={note.content} id={note.id} />
+            })
+          }
+        </VStack>
       </Flex>
     </Container >
   )
