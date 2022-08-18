@@ -1,7 +1,22 @@
-import { Container, Flex, InputGroup, Input, IconButton, InputRightElement } from "@chakra-ui/react";
-import { EditIcon, SearchIcon } from '@chakra-ui/icons'
+import {
+  Container,
+  Flex,
+  InputGroup,
+  Input,
+  InputRightElement
+} from "@chakra-ui/react";
+import { SearchIcon } from '@chakra-ui/icons'
+import NewNotes from "./NewNotes";
+import { useState } from "react";
 
-export function Search() {
+
+interface Props {
+  func: Function
+}
+
+export function Search(props: Props) {
+  const [search, setSearch] = useState('')
+
   return (
     <Container>
       <Flex flexDir='row' placeItems='center' gap={4}>
@@ -9,6 +24,8 @@ export function Search() {
           <Input
             placeholder='Search here...'
             borderRadius={25}
+            value={search}
+            onChange={({ target }) => { setSearch(target.value) }}
             _hover={{
               transform: 'translateY(-2px)',
               boxShadow: 'lg',
@@ -16,18 +33,7 @@ export function Search() {
           />
           <InputRightElement children={<SearchIcon color='green.500' />} />
         </InputGroup>
-        <IconButton
-          bg="transparent"
-          aria-label='Add to friends'
-          icon={<EditIcon />}
-          borderRadius={50}
-          borderWidth={2}
-          borderColor="blackAlpha.50"
-          _hover={{
-            transform: 'translateY(-2px)',
-            boxShadow: 'lg',
-          }}
-        />
+        <NewNotes func={props.func} />
       </Flex>
     </Container>
   )

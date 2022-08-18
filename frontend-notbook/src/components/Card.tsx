@@ -3,17 +3,31 @@ import { DeleteIcon } from '@chakra-ui/icons'
 
 interface Card {
   title: string,
-  content: string,
+  subject: string,
+  content?: string,
+  onClick: Function,
+  currentNote: Function,
   id?: number
 }
 
 export default function Card(props: Card) {
   return (
-    <Box p={5} cursor='pointer' shadow='md' m={2} borderWidth='1px' borderRadius={25}>
+    <Box
+      p={5}
+      cursor='pointer'
+      shadow='md'
+      m={2}
+      borderWidth='4px'
+      borderRadius={25}
+      _hover={{
+        transform: 'translateY(-2px)',
+        boxShadow: 'lg',
+      }}
+    >
       <Flex justifyContent='space-between' placeItems='center'>
-        <Box onClick={() => { console.log(props.title) }}>
+        <Box onClick={() => { props.currentNote(props.id) }}>
           <Heading fontSize='xl'>{props.title}</Heading>
-          <Text mt={4}>{props.content}</Text>
+          <Text mt={4}>{props.subject}</Text>
         </Box>
         <Box>
           <IconButton
@@ -25,7 +39,7 @@ export default function Card(props: Card) {
               transform: 'translateY(-2px)',
               boxShadow: 'lg',
             }}
-            onClick={() => { console.log("Delete") }}
+            onClick={() => { props.onClick(props.id) }}
             shadow='md'
           />
         </Box>
